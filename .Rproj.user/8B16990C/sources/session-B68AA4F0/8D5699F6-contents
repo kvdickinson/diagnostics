@@ -1,0 +1,42 @@
+---
+title: "This is my presentation"
+subtitle: "Hello world"
+author: "Kendra V. Dickinson"
+institute: "RStudio, PBC"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: [default, rutgers, rutgers-fonts]
+---
+
+# This is the title
+## This is a subsection
+```{r}
+2+2
+```
+
+---
+# This is a second slide
+## Welcome to my presentation
+```{r, include=FALSE}
+library(tidyverse)
+library(here)
+```
+
+```{r, echo=FALSE, message=FALSE, out.width="100%", fig.height=4, fig.retina=2, dpi=200}
+mtcars%>%
+  ggplot()+
+  aes(x=wt, y=mpg)+
+  geom_point()+
+  geom_smooth(method=lm)
+```
+
+---
+# A Table
+```{r, echo=FALSE}
+read.csv(file=here("data", "tidy", "mtcars_tidy.csv"))%>%
+  mutate_if(is.numeric, round, digits=2)%>%
+  arrange(cyl)%>%
+  knitr::kable()
+```
+
